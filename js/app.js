@@ -11,9 +11,35 @@ const q1Btn = document.querySelector("#q1");
 let choiceUnder = true;
 let choiceMedical = true;
 
+var timeLimitInMinutes = 4;
+var timeLimitInSeconds = timeLimitInMinutes * 60;
+var timerElement = document.getElementById('timer');
+
+function startTimer() {
+  timeLimitInSeconds--;
+  var minutes = Math.floor(timeLimitInSeconds / 60);
+  var seconds = timeLimitInSeconds % 60;
+
+  if (timeLimitInSeconds < 0) {
+    timerElement.textContent = '00:00';
+    clearInterval(timerInterval);
+    return;
+  }
+
+  if (minutes < 10) {
+    minutes = '0' + minutes;
+  }
+  if (seconds < 10) {
+    seconds = '0' + seconds;
+  }
+
+  timerElement.textContent = minutes + ':' + seconds;
+}
+
 const showText4 = () => {
 
     if(choiceMedical == false && choiceUnder == true ) {
+        var timerInterval = setInterval(startTimer, 1000);
         document.getElementById("qualify").style.display = "block";
     }else {
         document.getElementById("dontqualify").style.display = "block";
@@ -72,6 +98,11 @@ q2BtnNo.addEventListener("click", () => {
     choiceMedical = false;
     showText1();
 });
+
+
+
+
+
 
 
 
