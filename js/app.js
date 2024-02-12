@@ -38,7 +38,8 @@ function startTimer() {
 
 const showText4 = () => {
 
-    if(choiceMedical == false && choiceUnder == true ) {
+  //&& choiceUnder == true
+    if(choiceUnder == true  ) {
         var timerInterval = setInterval(startTimer, 1000);
         document.getElementById("qualify").style.display = "block";
     }else {
