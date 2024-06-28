@@ -5,20 +5,21 @@ const q2BtnNo = document.querySelector(".q2-btn-no");
 const loading3 = document.getElementById("loading3");
 const loading2 = document.getElementById("loading2");
 const loading1 = document.getElementById("loading1");
-
 const q2Btn = document.querySelector("#q2");
 const q1Btn = document.querySelector("#q1");
-let choiceUnder = true;
-let choiceMedical = true;
+const timerElement = document.getElementById('timer');
 
-var timeLimitInMinutes = 4;
-var timeLimitInSeconds = timeLimitInMinutes * 60;
-var timerElement = document.getElementById('timer');
+let choiceUnder = null;
+let choiceMedical = null;
+
+const timeLimitInMinutes = 4;
+let timeLimitInSeconds = timeLimitInMinutes * 60;
+let timerInterval;
 
 function startTimer() {
   timeLimitInSeconds--;
-  var minutes = Math.floor(timeLimitInSeconds / 60);
-  var seconds = timeLimitInSeconds % 60;
+  let minutes = Math.floor(timeLimitInSeconds / 60);
+  let seconds = timeLimitInSeconds % 60;
 
   if (timeLimitInSeconds < 0) {
     timerElement.textContent = '00:00';
@@ -26,85 +27,74 @@ function startTimer() {
     return;
   }
 
-  if (minutes < 10) {
-    minutes = '0' + minutes;
+  timerElement.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+
+function showText4() {
+  if (choiceUnder === false || choiceMedical === true) {
+    timerInterval = setInterval(startTimer, 1000);
+    document.getElementById("qualify").style.display = "block";
+  } else {
+    document.getElementById("dontqualify").style.display = "block";
   }
-  if (seconds < 10) {
-    seconds = '0' + seconds;
-  }
-
-  timerElement.textContent = minutes + ':' + seconds;
 }
 
-const showText4 = () => {
+function showText3() {
+  loading3.style.display = "block";
+  setTimeout(() => {
+    loading3.style.display = "none";
+    showText4();
+  }, 1000);
+}
 
-  //&& choiceUnder == true
-    if(choiceUnder == true  ) {
-        var timerInterval = setInterval(startTimer, 1000);
-        document.getElementById("qualify").style.display = "block";
-    }else {
-        document.getElementById("dontqualify").style.display = "block";
-    }
+function showText2() {
+  loading2.style.display = "block";
+  setTimeout(() => {
+    loading2.style.display = "none";
+    showText3();
+  }, 1000);
 }
-const showText3 = () => {
-    
-    loading3.style.display = "block";
-    setTimeout(() => {
-        console.log('Foo bar1');
-        loading3.style.display = "none";
-        showText4();
-      }, 1000)
-}
-const showText2 = () => {
-    
-    loading2.style.display = "block";
-    setTimeout(() => {
-        console.log('Foo bar1');
-        loading2.style.display = "none";
-        showText3();
-      }, 1000)
-}
-const showText1 = () => {
-    
-    loading1.style.display = "block";
-    setTimeout(() => {
-        console.log('Foo bar');
-        loading1.style.display = "none";
-        showText2();
-      }, 1000)
+
+function showText1() {
+  loading1.style.display = "block";
+  setTimeout(() => {
+    loading1.style.display = "none";
+    showText2();
+  }, 1000);
 }
 
 q1BtnYes.addEventListener("click", () => {
-    q1Btn.style.display = "none";
-    q2Btn.style.display = "block";
-    q1Btn.classList.add("fade-in");
-    q2Btn.classList.add("fade-out");
-    choiceUnder = true;
+  q1Btn.style.display = "none";
+  q2Btn.style.display = "block";
+  choiceUnder = true;
 });
+
 q1BtnNo.addEventListener("click", () => {
-    q1Btn.style.display = "none";
-    q2Btn.style.display = "block";
-    q2Btn.classList.add("fade-in");
-    loading1.classList.add("fade-out");
-    choiceUnder = false;
+  q1Btn.style.display = "none";
+  q2Btn.style.display = "block";
+  choiceUnder = false;
 });
 
 q2BtnYes.addEventListener("click", () => {
-    q2Btn.style.display = "none";
-    choiceMedical = true;
-    showText1();
+  q2Btn.style.display = "none";
+  choiceMedical = true;
+  showText1();
 });
+
 q2BtnNo.addEventListener("click", () => {
-    q2Btn.style.display = "none";
-    choiceMedical = false;
-    showText1();
+  q2Btn.style.display = "none";
+  choiceMedical = false;
+  loading1.style.display = "block";
+  setTimeout(() => {
+    loading1.style.display = "none";
+    loading2.style.display = "block";
+    setTimeout(() => {
+      loading2.style.display = "none";
+      loading3.style.display = "block";
+      setTimeout(() => {
+        loading3.style.display = "none";
+        document.getElementById("dontqualify").style.display = "block";
+      }, 1000);
+    }, 1000);
+  }, 1000);
 });
-
-
-
-
-
-
-
-
-
