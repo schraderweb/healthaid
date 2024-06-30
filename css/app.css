@@ -395,3 +395,18 @@
     box-shadow: 0 0 0 0 transparent;
     }
     }
+
+
+
+
+    /**
+    utility classes
+    **/
+
+    .d-none {
+        display: none !important;
+    }
+
+    .d-block {
+        display: block !important;
+    }

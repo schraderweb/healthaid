@@ -34,9 +34,10 @@ function showText4() {
   if (choiceUnder === false || choiceMedical === true) {
     timerInterval = setInterval(startTimer, 1000);
     document.getElementById("qualify").style.display = "block";
+    sh.initialize(matchingConfiguration, "qsWidgetContainer");
   } else {
-    document.getElementById("dontqualify").style.display = "block";
-  }
+    document.getElementById("dontqualify").style.display = "block"
+}
 }
 
 function showText3() {
