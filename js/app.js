@@ -19,7 +19,6 @@ let timeLimitInSeconds = timeLimitInMinutes * 60;
 let timerInterval;
 
 function startTimer() {
-  console.log(timerElement)
   timeLimitInSeconds--;
   let minutes = Math.floor(timeLimitInSeconds / 60);
   let seconds = timeLimitInSeconds % 60;
@@ -127,9 +126,6 @@ q2BtnNo.addEventListener("click", () => {
 
 
 function hideAllBtns() {
-
-
-  console.log(btns)
   document.querySelectorAll('.button').forEach(btn => btn.style.display="none")
 
 }
