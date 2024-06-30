@@ -8,6 +8,8 @@ const loading1 = document.getElementById("loading1");
 const q2Btn = document.querySelector("#q2");
 const q1Btn = document.querySelector("#q1");
 const timerElement = document.getElementById('timer');
+let btns = document.querySelectorAll("div.button")
+
 
 let choiceUnder = null;
 let choiceMedical = null;
@@ -17,6 +19,7 @@ let timeLimitInSeconds = timeLimitInMinutes * 60;
 let timerInterval;
 
 function startTimer() {
+  console.log(timerElement)
   timeLimitInSeconds--;
   let minutes = Math.floor(timeLimitInSeconds / 60);
   let seconds = timeLimitInSeconds % 60;
@@ -31,12 +34,18 @@ function startTimer() {
 }
 
 function showText4() {
+
+  
+
   if (choiceUnder === false || choiceMedical === true) {
-    timerInterval = setInterval(startTimer, 1000);
     document.getElementById("qualify").style.display = "block";
     sh.initialize(matchingConfiguration, "qsWidgetContainer");
-  } else {
-    document.getElementById("dontqualify").style.display = "block"
+  } else if(choiceUnder && choiceMedical === false) {
+     document.getElementById("dontqualify").style.display = "block"
+  } 
+  else {
+    document.getElementById("qualify").style.display = "block"
+
 }
 }
 
@@ -71,9 +80,24 @@ q1BtnYes.addEventListener("click", () => {
 });
 
 q1BtnNo.addEventListener("click", () => {
+  hideAllBtns()
   q1Btn.style.display = "none";
   q2Btn.style.display = "block";
+
   choiceUnder = false;
+  setTimeout(() => {
+    loading1.style.display = "none";
+    loading2.style.display = "block";
+    setTimeout(() => {
+      loading2.style.display = "none";
+      loading3.style.display = "block";
+      setTimeout(() => {
+        loading3.style.display = "none";
+        showText4()
+      }, 1000);
+    }, 1000);
+  }, 0);
+  
 });
 
 q2BtnYes.addEventListener("click", () => {
@@ -95,7 +119,17 @@ q2BtnNo.addEventListener("click", () => {
       setTimeout(() => {
         loading3.style.display = "none";
         document.getElementById("dontqualify").style.display = "block";
+        timerInterval = setInterval(startTimer, 1000);
       }, 1000);
     }, 1000);
   }, 1000);
 });
+
+
+function hideAllBtns() {
+
+
+  console.log(btns)
+  document.querySelectorAll('.button').forEach(btn => btn.style.display="none")
+
+}
