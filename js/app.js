@@ -36,6 +36,7 @@ function showText4() {
     document.getElementById("qualify").style.display = "block";
     sh.initialize(matchingConfiguration, "qsWidgetContainer");
   } else {
+    let winnerDiv = document.getElementById('winner')
     document.getElementById("dontqualify").style.display = "block"
 }
 }
