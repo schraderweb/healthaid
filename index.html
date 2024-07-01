@@ -77,6 +77,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="button q2-btn q2-btn-yes ">Yes</div>
                 <div class="button q2-btn q2-btn-no ">No</div>
             </div>
+            <div id="congratulations" style="display: none;">
+                <h5>Congratulations!</h5>
+                <p>You Pre-Qualify for up to <span style="color: red; font-weight: 700;">$6400 a month</span> in <span
+                        style="color: #167cb9; font-weight: 700;">Premium Health Credits</span></p>
+                <p>Your spot is being held. To get started click the button below to speak to an expert.</p>
+                <a id="button" class="call-button" style="animation: pulsing 1.5s infinite" href="tel:+18776373913">Click Here to Call and Claim your $6400 Subsidy!</a>
+                <h3>Your spot is being held for <span id="timer" class="countdown">4:00</span></h3>
+            </div>
             <div id="loading1" class="loading boxme">
                 <h3>Reviewing Your Answers</h3>
             </div>
@@ -107,6 +115,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <footer>
         <div class="container">
+            <div id="qsWidgetContainer"></div>
+
             <p class="copyright">© 2024 Healthsubsidies.net </p>
             <p class="copyright" style="padding-top: 10px;">Fact Checks</p>
             <div class="copyright" style="font-size: 15px;">
@@ -145,8 +155,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>
 	//see it working https://jsfiddle.net/surehits/02jrwq7s/
 	//Remove the "QA.Test" value from the var1 variable before going live, it will scrub your traffic.  QA.Test tells us you are testing.
-	
-	var matchingConfiguration = {
+   
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('q1').style.display = 'block';
+            document.getElementById('q2').style.display = 'none';
+            document.getElementById('congratulations').style.display = 'none';
+            document.querySelector('.q1-btn-yes').addEventListener('click', function () {
+                document.getElementById('q1').style.display = 'none';
+                document.getElementById('q2').style.display = 'block';
+            });
+
+            document.querySelector('.q1-btn-no').addEventListener('click', function () {
+                document.getElementById('q1').style.display = 'none';
+                document.getElementById('q2').style.display = 'none';
+                document.getElementById('congratulations').style.display = 'block';
+            });
+
+            document.querySelector('.q2-btn-yes').addEventListener('click', function () {
+                // Add your logic for q2 Yes button click here
+            });
+
+            document.querySelector('.q2-btn-no').addEventListener('click', function () {
+                // Add your logic for q2 No button click here
+            });
+        });
+        var matchingConfiguration = {
 		"src": "59",
 		"zipcode": "94404",
 		"statecode": "CA",
@@ -173,7 +206,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	};
 	
 	//the widget will be loaded into a div with id="qsWidgetContainer".  
-	
+	sh.initialize(matchingConfiguration, "qsWidgetContainer");
 </script>
 </body>
 
