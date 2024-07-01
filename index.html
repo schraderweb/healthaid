@@ -39,8 +39,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   gtag('config', 'G-E4RLSFE6JB');
 </script>    
-<script type="text/javascript" src="//www.nextinsure.com/listingdisplay/loader/sh" defer async></script>
-
 </head>
 <body>
     <header class="header">
@@ -77,14 +75,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="button q2-btn q2-btn-yes ">Yes</div>
                 <div class="button q2-btn q2-btn-no ">No</div>
             </div>
-            <div id="congratulations" style="display: none;">
-                <h5>Congratulations!</h5>
-                <p>You Pre-Qualify for up to <span style="color: red; font-weight: 700;">$6400 a month</span> in <span
-                        style="color: #167cb9; font-weight: 700;">Premium Health Credits</span></p>
-                <p>Your spot is being held. To get started click the button below to speak to an expert.</p>
-                <a id="button" class="call-button" style="animation: pulsing 1.5s infinite" href="tel:+18776373913">Click Here to Call and Claim your $6400 Subsidy!</a>
-                <h3>Your spot is being held for <span id="timer" class="countdown">4:00</span></h3>
-            </div>
             <div id="loading1" class="loading boxme">
                 <h3>Reviewing Your Answers</h3>
             </div>
@@ -95,14 +85,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <h3>Confirming Eligibility</h3>
             </div>
             <div id="qualify" class="boxme">
-                <div id="qsWidgetContainer"></div>
-
-            </div>
-            <div id="dontqualify" class="boxme">
-                <p class="greatnews"><strong style="display:none;">Sorry, we can't help you.</strong></p>
-                <p style="display:none;">The questions you answered have helped us determine that we are not able to help you at this time.
-                </p>
-                <h2 style="display:none;">&nbsp;</h2>
                 <h5>Congratulations!</h5>
                 <p>You Pre-Qualify for up to <span style="color: red; font-weight: 700;">$6400 a month</span> in <span
                         style="color: #167cb9; font-weight: 700;">Premium Health Credits</span></p>
@@ -110,6 +92,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     id="button" class="call-button" style="animation: pulsing 1.5s infinite" href="tel:+18446490423">Click Here to Call and Claim your $6400 Subsidy!</a>               
     <h3>Your spot is being held for <span id="timer" class="countdown">4:00</span></h3>
                 </div>
+            <div id="dontqualify" class="boxme" style="display: none">
+                <p class="greatnews"><strong>Sorry, we can't help you.</strong></p>
+                <p>The questions you answered have helped us determine that we are not able to help you at this time.
+                </p>
+                <h2>&nbsp;</h2>
+            </div>
             <hr class="divider">
         </section>
     </div>
@@ -151,63 +139,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </footer>
 
-<script src="/js/app.js" defer></script>
+<script src="/js/app.js"></script>
 <script>
-	//see it working https://jsfiddle.net/surehits/02jrwq7s/
-	//Remove the "QA.Test" value from the var1 variable before going live, it will scrub your traffic.  QA.Test tells us you are testing.
-   
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('q1').style.display = 'block';
-            document.getElementById('q2').style.display = 'none';
-            document.getElementById('congratulations').style.display = 'none';
-            document.querySelector('.q1-btn-yes').addEventListener('click', function () {
-                document.getElementById('q1').style.display = 'none';
-                document.getElementById('q2').style.display = 'block';
-            });
-
-            document.querySelector('.q1-btn-no').addEventListener('click', function () {
-                document.getElementById('q1').style.display = 'none';
-                document.getElementById('q2').style.display = 'none';
-                document.getElementById('congratulations').style.display = 'block';
-            });
-
-            document.querySelector('.q2-btn-yes').addEventListener('click', function () {
-                // Add your logic for q2 Yes button click here
-            });
-
-            document.querySelector('.q2-btn-no').addEventListener('click', function () {
-                // Add your logic for q2 No button click here
-            });
-        });
-        var matchingConfiguration = {
-		"src": "59",
-		"zipcode": "94404",
-		"statecode": "CA",
-		"var1": "QA.Test", 
-		"var2": "subid 2",
-		"var3": "subid 3",
-		"trn_id": "transactionId",
-		"leadid": "",
-    "coveragetype":	"Medicare",
-    "householdsize":"4",
-		"age": "38",
-		"creditrating": "Excellent",
-		"currentlyinsured": "1",
-		"education": "Bachelor",
-		"gender": "M",
-		"homeowner": "1",
-		"married": "0",
-		"military": "1",
-		"occupation": "Professor",
-		"medicalcondition":"0",
-		"height":"65",
-		"weight":"170",
-		"tobacco":"0"
-	};
-	
-	//the widget will be loaded into a div with id="qsWidgetContainer".  
-	sh.initialize(matchingConfiguration, "qsWidgetContainer");
+    //see it working https://jsfiddle.net/surehits/02jrwq7s/
+    //Remove the "QA.Test" value from the var1 variable before going live, it will scrub your traffic.  QA.Test tells us you are testing.
+    
+    var matchingConfiguration = {
+   	 "src": "693891",
+   	 "inventorytype":"health-grid-incontent",
+   	 "zipcode": "94404",
+   	 "statecode": "CA",
+   	 "var1": "subid 1",
+   	 "var2": "subid 2",
+   	 "var3": "subid 3",
+   	 "trn_id": "transactionId",
+   	 "leadid": "",
+   	 "coveragetype":    "Medicare",
+   	 "householdsize":"4",
+   	 "age": "38",
+   	 "creditrating": "Excellent",
+   	 "currentlyinsured": "1",
+   	 "education": "Bachelor",
+   	 "gender": "M",
+   	 "homeowner": "1",
+   	 "married": "0",
+   	 "military": "1",
+   	 "occupation": "Professor",
+   	 "medicalcondition":"0",
+   	 "height":"65",
+   	 "weight":"170",
+   	 "tobacco":"0",
+   	 "session_ref":    "referring url of user's session",
+   	 "lp_url":"landing page of user",
+   	 "ext_click_id": "abcdefg12345678"
+    };
+    
+    //the widget will be loaded into a div with id="qsWidgetContainer".  
+    sh.initialize(matchingConfiguration, "qsWidgetContainer");
 </script>
+
 </body>
 
 </html>
