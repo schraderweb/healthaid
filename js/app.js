@@ -88,7 +88,6 @@ q1BtnNo.addEventListener("click", () => {
 q2BtnYes.addEventListener("click", () => {
     q2Btn.style.display = "none";
     choiceMedical = false;
-    choiceUnder = false
     showText2();
 });
 q2BtnNo.addEventListener("click", () => {
