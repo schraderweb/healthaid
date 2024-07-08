@@ -82,7 +82,7 @@ q1BtnNo.addEventListener("click", () => {
     q2Btn.classList.add("fade-in");
     loading1.classList.add("fade-out");
     choiceUnder = false;
-    showText1();
+    showText2();
 });
 
 q2BtnYes.addEventListener("click", () => {
