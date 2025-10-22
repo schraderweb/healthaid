@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Medicare Benefit - Free CGM for Qualifying Seniors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .alert-banner {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .timer {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-left: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: #16a34a;
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 22px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(22, 163, 74, 0.5);
+        }
+
+        .features {
+            padding: 80px 20px;
+            background: #f9fafb;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #1e40af;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1e40af;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .eligibility {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .eligibility h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #1e40af;
+        }
+
+        .eligibility-list {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            background: #f0f9ff;
+            padding: 40px;
+            border-radius: 12px;
+            border-left: 5px solid #1e40af;
+        }
+
+        .eligibility-list ul {
+            list-style: none;
+        }
+
+        .eligibility-list li {
+            padding: 15px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 18px;
+        }
+
+        .eligibility-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #16a34a;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+
+        footer {
+            background: #1f2937;
+            color: #9ca3af;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .cta-button {
+                padding: 16px 40px;
+                font-size: 18px;
+            }
+
+            .features h2, .eligibility h2, .cta-section h2 {
+                font-size: 28px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="alert-banner">
+        🚨 LOW STOCK ALERT - Pre-Order Hold Expires in: <span class="timer" id="timer">02:00</span>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">Medicare Benefits</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>New Medicare Benefit Gives Qualifying Seniors a Continuous Glucose Monitor</h1>
+            <h2>Claim Yours Below!</h2>
+            <p>If you have Medicare and diabetes, you may qualify for a FREE Continuous Glucose Monitor (CGM) with no out-of-pocket costs.</p>
+            <button class="cta-button" onclick="scrollToForm()">Check My Eligibility Now</button>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose a Continuous Glucose Monitor?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-Time Monitoring</h3>
+                    <p>Track your glucose levels 24/7 without painful finger pricks. Get instant readings on your smartphone or receiver.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Alerts</h3>
+                    <p>Receive immediate notifications when your glucose levels are too high or too low, helping you take action quickly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>$0 Cost for Qualified Seniors</h3>
+                    <p>Medicare Part B covers CGM devices for eligible beneficiaries with no out-of-pocket expenses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="eligibility">
+        <div class="container">
+            <h2>Do You Qualify?</h2>
+            <div class="eligibility-list">
+                <ul>
+                    <li>You have Medicare Part B</li>
+                    <li>You have been diagnosed with diabetes</li>
+                    <li>You currently use insulin or have a history of problematic hypoglycemia</li>
+                    <li>You have visited your doctor within the last 6 months</li>
+                </ul>
+            </div>
+            <div style="text-align: center;">
+                <button class="cta-button" onclick="scrollToForm()">See If I Qualify</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="form-section">
+        <div class="container">
+            <h2>Claim Your Free CGM Today</h2>
+            <p>Limited availability - secure your device now before stock runs out</p>
+            <button class="cta-button" onclick="alert('This is a demo page. In a real implementation, this would connect to a qualification form or contact system.')">Get Started Now</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="disclaimer">
+                <p><strong>DISCLAIMER:</strong> This is a demonstration page. Medicare coverage eligibility varies by individual circumstances. CGM coverage under Medicare Part B requires a prescription from your doctor and meeting specific medical criteria. This is not an official Medicare or government website. Consult with your healthcare provider and Medicare plan to determine your actual eligibility and coverage. Results may vary. Not all Medicare beneficiaries will qualify for a CGM device.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown timer
+        let timeLeft = 120; // 2 minutes in seconds
+        
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                timeLeft = 120; // Reset timer
+            }
+        }
+        
+        updateTimer();
+        setInterval(updateTimer, 1000);
+        
+        function scrollToForm() {
+            document.getElementById('form-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+    </script>
+</body>
+</html>
