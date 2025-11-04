@@ -48,19 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to show disqualification message
   function showDisqualification() {
-    const finalSection = document.querySelector("#finalSection");
-    if (finalSection) {
-      finalSection.innerHTML = `
-        <div class="finalsection">
-          <h2 style="color: #cf0000; margin-top: 40px; margin-bottom: 40px;">Sorry, You Do Not Qualify</h2>
-        </div>
-      `;
-      finalSection.style.display = "block";
-      setTimeout(() => {
-        finalSection.style.opacity = 1;
-      }, 10);
-    }
-  }
+  window.location.href = "non-qualified.html";
+}
 
   // Function to show sections 1, 2, and 3 one by one
   function showSections() {
