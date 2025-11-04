@@ -12,6 +12,7 @@ body {
   color: #222222;
 }
 
+
 .header {
   background: #cf0000;
   color: white;
@@ -152,6 +153,11 @@ body {
   color: #2FBDAA;
   font-size: 26px;
 }
+.finalsection h5 {
+  color: #222222;
+  font-size: 26px;
+}
+
 .finalsection h1 {
   font-size: 35px;
 }
@@ -162,8 +168,8 @@ body {
 }
 
 
-.finalsection .call-button {
-  display: flex;
+.call-button  {
+  display: inline-block;
   align-items: center;
   justify-content: center;
   font-size: 24px;
@@ -175,9 +181,12 @@ body {
   cursor: pointer;
   border: none;
   width: 100%;
-}
-.finalsection .call-button:hover {
   color: white;
+  text-decoration: none;
+}
+
+.call-button:hover {
+  color: black;
 }
 .finalsection p {
   font-size: 18px;

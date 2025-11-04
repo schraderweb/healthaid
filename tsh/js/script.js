@@ -95,32 +95,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to show approval and call button
   function showApproval() {
-    const finalSection = document.querySelector("#finalSection");
-    if (finalSection) {
-      finalSection.innerHTML = `
-        <div class="finalsection">
-          <p><i class="fas fa-exclamation-triangle"></i> LOW STOCK ALERT</p>
-          <h3>YOUR ORDER IS CONFIRMED</h3>
-          <img src="./images/Libre-Confirmed.png" alt="">
-          <p style="color: #222222; font-weight: 500;">
-            You qualify for a CGM from Medicare!
-          </p>
-          <h4>YOU MUST <span style="color: #ff0000;">TAP <span style="text-decoration: underline;">"ORDER BY PHONE"</span></span> to confirm shipping details & complete your order</h4>
-          <h1>TAP TO CALL</h1>
-          <button class="call-button"><i class="fas fa-phone"></i> ORDER BY PHONE</button>
-          <h4>Pre-Order Hold Expires in: <span style="color: #ff0000;">00:00</span></h4>
-        </div>
-      `;
-      finalSection.style.display = "block";
-      setTimeout(() => {
-        finalSection.style.opacity = 1;
-        // Start countdown after final section is visible
-        const countdownDuration = 2 * 60;
-        const display = finalSection.querySelector("h4 span");
-        startCountdown(countdownDuration, display);
-      }, 10);
-    }
+  const finalSection = document.querySelector("#finalSection");
+  if (finalSection) {
+    finalSection.innerHTML = `
+      <div class="finalsection">
+        <p><i class="fas fa-exclamation-triangle"></i> LOW STOCK ALERT</p>
+        <h3>YOUR ORDER IS CONFIRMED</h3>
+        <img src="./images/Libre-Confirmed.png" alt="">
+        <p style="color: #222222; font-weight: 500;">
+          You qualify for a CGM from Medicare!
+        </p>
+          <h5>YOU MUST <span style="color: #ff0000;">TAP <span style="text-decoration: underline;">"ORDER BY
+                 PHONE"</span> </span> to confirm shipping details & complete your order</h5>
+          
+        <h1>TAP TO CALL</h1>
+        <a href="tel:18337230131" class="call-button" id="callNowBtn">
+          <i class="fas fa-phone"></i> ORDER BY PHONE
+        </a>
+        <h4>Pre-Order Hold Expires in: <span style="color: #ff0000;">00:00</span></h4>
+      </div>
+    `;
+    finalSection.style.display = "block";
+    setTimeout(() => {
+      finalSection.style.opacity = 1;
+      const countdownDuration = 2 * 60;
+      const display = finalSection.querySelector("h4 span");
+      startCountdown(countdownDuration, display);
+
+      const callBtn = document.getElementById("callNowBtn");
+      if (callBtn) {
+        callBtn.addEventListener("click", () => {
+          if (typeof fbq === "function") {
+            fbq("track", "Lead");
+          }
+        });
+      }
+    }, 10);
   }
+}
+
 
   // Assign click handlers to question 1 buttons
   document.querySelectorAll("#question1 .answer-button").forEach((button, index) => {
