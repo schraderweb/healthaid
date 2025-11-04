@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TSH - CGM Benefit</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+
+<body>
+  <header class="header">
+    <p>
+      <span><i class="fas fa-exclamation-triangle"></i> LOW STOCK ALERT: </span>Claim While Supplies Last
+    </p>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <h1>
+        New Medicare Benefit gives Qualifying Seniors a
+        <span>Continuous <br> Glucose Monitor.</span> Claim Yours Below!
+      </h1>
+      <div class="main-image">
+        <img src="./images/Program-Banner5.jpg" alt="Program-Banner5" />
+      </div>
+
+      <section class="info-section">
+        <p>
+          Getting a CGM is expensive, but <span>Medicare covers the cost</span> for seniors 65+ using insulin. Replace
+          <br> daily finger
+          sticks with <span style="color: #222222;"> pain-free, real-time glucose numbers ↓</span>
+        </p>
+        <button class="quiz-button">
+          Take this short quiz to see if you qualify
+        </button>
+      </section>
+
+      <section class="question-section">
+        <div id="question1" class="question fade-in">
+          <p style="font-size: 25px; ">
+            Want to manage your levels without fingerpricks?
+          </p>
+          <button class="answer-button" onclick="nextQuestion(2)">
+            Yes
+          </button>
+          <button class="answer-button" onclick="nextQuestion(2)">
+            No
+          </button>
+        </div>
+
+        <div id="question2" class="question">
+          <p style="font-size: 25px; margin-bottom: 20px; ">
+            Do you take insulin at least once per day?
+          </p>
+          <button class="answer-button" onclick="nextQuestion(3)">Yes</button>
+          <button class="answer-button" onclick="nextQuestion(3)">No</button>
+        </div>
+
+        <div id="question3" class="question">
+          <p style="font-size: 25px; margin-bottom: 20px; ">
+            What year were you born?
+          </p>
+          <button class="answer-button">Before 1961</button>
+          <button class="answer-button">1961 - 2000</button>
+          <button class="answer-button">After 2000</button>
+        </div>
+
+        <div id="section1" class="fade-section">
+          <h2>Reviewing Your Answers...</h2>
+        </div>
+
+        <div id="section2" class="fade-section">
+          <h2>Matching You with the Best Options...</h2>
+        </div>
+
+        <div id="section3" class="fade-section">
+          <h2>Confirming Eligibility...</h2>
+        </div>
+
+        <div id="finalSection" class="fade-section">
+          <div class="finalsection">
+            <p><i class="fas fa-exclamation-triangle"></i>
+LOW STOCK ALERT</p>
+            <h3>YOUR ORDER IS CONFIRMED</h3>
+            <img src="./images/Libre-Confirmed.png" alt="">
+            <p style="color: #222222; font-weight: 500;">
+              You qualify for a CGM from Medicare!
+            </p>
+            <h4>YOU MUST <span style="color: #ff0000;">TAP <span style="text-decoration: underline;">"ORDER BY
+                    PHONE"</span> </span> to confirm shipping details & complete your order</h4>
+            <h1>TAP TO CALL </h1>
+            <button class="call-button"><i class="fas fa-phone"></i>ORDER BY PHONE</button>
+            <h4>
+              Pre-Order Hold Expires in: <span style="color: #ff0000;">00:00 </span>
+            </h4>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div style="padding: 10px 80px">
+      <p style="text-align: center;">
+        <a style="color: #bfbfbf; font-size: 16px" href="#">Privacy Policy</a>
+        <a style="color: #bfbfbf; font-size: 16px" href="#">Terms & Conditions / Partners</a>
+      </p>
+    </div>
+    <p>
+      Disclaimer: CGMBenefit.com is not affiliated with the United States government, Social Security Administration,
+      Facebook, or any other entity. We may earn revenue from our advertisers for clicks, leads, calls and work
+      delivered for the services advertised. This compensation may impact how, where and which services appear. CGM
+      Benefit does not include all providers or all available services. CGM Benefit is not a medical organization nor do
+      we provide medical services.
+    </p>
+
+
+
+  </footer>
+  <script src="./js/script.js"></script>
+</body>
+
+</html>

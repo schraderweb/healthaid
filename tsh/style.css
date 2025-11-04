@@ -1,0 +1,279 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #222222;
+}
+
+.header {
+  background: #cf0000;
+  color: white;
+  padding: 8px 0px;
+  font-size: 13px;
+  text-align: center;
+}
+.header p span{
+  font-weight: bold;
+  font-size: 14px;
+}
+
+
+.main-content {
+  text-align: center;
+}
+
+.main-content > .container {
+  margin-left: 192px;
+  margin-right: 192px;
+}
+
+.main-content h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 39.2px;
+  text-align: center;
+}
+
+.main-content h1 span {
+  color: red;
+  font-weight: bold;
+}
+
+.main-image img {
+  max-width: 70%;
+  height: auto;
+  margin: 10px 0;
+}
+
+.info-section {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.info-section p {
+  margin-bottom: 30px;
+  font-size: 20px;
+  line-height: 35px;
+}
+
+.info-section > p > span {
+  color: red;
+}
+
+.info-section h2 {
+  font-size: 22px;
+  margin: 20px 0 10px;
+}
+
+.info-section span {
+  font-weight: bold;
+  color: red;
+}
+
+.quiz-button {
+  /* display: block; */
+  width: 70%;
+  padding: 5px 25px;
+  font-size: 19px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.question {
+  opacity: 0;
+  width: 100%;
+  transition: opacity 1s ease-in-out;
+}
+.fade-section {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: none;
+  text-align: center;
+  padding: 40px;
+  margin: 10px 0;
+  border-top: 5px solid navy; /* The blue line at the top */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow effect */
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.answer-button {
+  display: block;
+  width: 100%;
+  background-color: #e9a800;
+  padding: 15px 0;
+  font-size: 24px;
+  text-align: center;
+  border: none;
+  margin-top: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  border-radius: 3px;
+}
+
+.answer-button:hover {
+  color: #333333;
+}
+
+.finalsection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 34px;
+}
+.finalsection p {
+  color:#AD0000;
+  font-size: 12px;
+}
+.finalsection h3 {
+  color: #2FBDAA;
+  font-size: 26px;
+}
+.finalsection h1 {
+  font-size: 35px;
+}
+.question-section{
+   border-bottom: 1px solid #222222;
+   padding-bottom: 4rem;
+   width: 100%;
+}
+
+
+.finalsection .call-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  width: 100%;
+  font-weight: bold;
+  background-color: #e9a800;
+  padding: 20px 0px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+.finalsection .call-button:hover {
+  color: white;
+}
+.finalsection p {
+  font-size: 18px;
+  line-height: 25.5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+footer{
+  margin-top: 10px;
+}
+footer > p {
+  color: #7a7a7a;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 10px 80px;
+  text-align: center;
+}
+@media screen and (max-width: 600px) {
+  .header {
+    padding: 10px 10px;
+  }
+
+  .logo img {
+    max-width: 140px;
+  }
+
+  .contact-info {
+    text-align: right;
+  }
+
+  .contact-info p {
+    font-size: 12px;
+  }
+
+  .contact-info span {
+    font-weight: bold;
+    color: #555555;
+  }
+
+  .call-button {
+    padding: 10px 10px;
+    font-size: 12px;
+  }
+
+  .call-button img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .main-content h1 {
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .main-image img {
+    max-width: 80%;
+    margin: 10px 0;
+  }
+
+  .info-section p {
+    font-size: 16px;
+  }
+
+  .info-section h2 {
+    font-size: 20px;
+  }
+
+  .quiz-button {
+    font-size: 16px;
+  }
+
+  .main-content > .container {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  footer > p {
+    color: #7a7a7a;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 20px 10px;
+    text-align: left;
+  }
+  .finalsection {
+    margin: 0;
+  }
+
+  .finalsection h1 {
+    font-size: 25px;
+  }
+
+  .finalsection p {
+    font-size: 18px;
+    line-height: 25.5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
