@@ -94,12 +94,11 @@ document.addEventListener("DOMContentLoaded", function () {
         <p style="color: #222222; font-weight: 500;">
           You qualify for a CGM from Medicare!
         </p>
-          <h5>YOU MUST <span style="color: #ff0000;">TAP <span style="text-decoration: underline;">"ORDER BY
-                 PHONE"</span> </span> to confirm shipping details & complete your order</h5>
+          <h5>YOU MUST <span style="color: #ff0000;">CALL"</span> </span> to confirm shipping details & complete your order</h5>
           
         <h1>TAP TO CALL</h1>
         <a href="tel:18337230131" class="call-button" id="callNowBtn">
-          <i class="fas fa-phone"></i> ORDER BY PHONE
+          <i class="fas fa-phone"></i> CLICK HERE TO CALL NOW AND CONFIRM YOUR ORDER
         </a>
         <h4>Pre-Order Hold Expires in: <span style="color: #ff0000;">00:00</span></h4>
       </div>
@@ -168,4 +167,5 @@ function startCountdown(duration, display) {
       display.textContent = "00:00";
     }
   }, 1000);
+
 }
