@@ -444,8 +444,6 @@ src="https://www.facebook.com/tr?id=1358238982322152&ev=PageView&noscript=1"
         </div>
 
         <h1 class="title">A New Medicare benefit now covers Continuous Glucose Monitors</h1>
-        <!-- <p class="minititle">If you're 65+ and use insulin, you may qualify to receive a CGM that replaces painful daily finger-pricks with instant, real-time glucose readings.
-</p> -->
 
         <div class="online-indicator">
             <span class="online-dot"></span>
@@ -534,7 +532,7 @@ Emily is Online.
                         ✅ Want to monitor your glucose without finger-pricks?
                         <div class="age-buttons">
                             <button class="btn" onclick="goToStep3('Yes')">Yes</button>
-                            <button class="btn" onclick="goToStep3('No')">No</button>
+                            <button class="btn" onclick="disqualify()">No</button>
                         </div>
                     </div>
                 </div>
@@ -682,8 +680,8 @@ Emily is Online.
                         ✅ What year were you born?
                         <div class="age-buttons">
                             <button class="btn" onclick="goToStep5('Before 1961')">Before 1961</button>
-                            <button class="btn" onclick="goToStep5('1961–2000')">1961–2000</button>
-                            <button class="btn" onclick="goToStep5('After 2000')">After 2000</button>
+                            <button class="btn" onclick="disqualify()">1961–2000</button>
+                            <button class="btn" onclick="disqualify()">After 2000</button>
                         </div>
                     </div>
                 </div>
@@ -820,7 +818,7 @@ Emily is Online.
 
     <div class="disclaimer">
         DISCLAIMER: This site is not part of Facebook or Meta Platforms, Inc. It is not endorsed by Facebook in any way. Facebook is a trademark of Meta Platforms, Inc.
-We are not affiliated with or endorsed by the U.S. government or the federal Medicare program. This is a paid advertisement for Medicare insurance services. Calls may be connected to a licensed insurance ./agent. Enrollment in any plan depends on contract renewal. This site and its content are for informational purposes only.
+We are not affiliated with or endorsed by the U.S. government or the federal Medicare program. This is a paid advertisement for Medicare insurance services. Calls may be connected to a licensed insurance agent. Enrollment in any plan depends on contract renewal. This site and its content are for informational purposes only.
         <br><br>@2025. All rights Reserved.
         <a href="https://healthsubsidies.net/MEDICGM/privacy.html" style="color: #007bff;">Privacy Policy</a> | <a href="https://healthsubsidies.net/MEDICGM/term.html" style="color: #007bff;">Terms & Conditions</a>
     </div>
@@ -831,12 +829,16 @@ We are not affiliated with or endorsed by the U.S. government or the federal Med
         let timeLeft = 30;
         let timerStarted = false;
 
-        // Initialize countdown - now called manually
+        // Disqualification function
+        function disqualify() {
+            window.location.href = 'https://healthsubsidies.net/tsh/non-qualified.html';
+        }
+
+        // Initialize countdown
         function startCountdown() {
-            if (timerStarted) return; // Prevent multiple timers
+            if (timerStarted) return;
             timerStarted = true;
             
-            // Make countdown visible
             document.getElementById('countdownSection').classList.add('visible');
             
             countdownTimer = setInterval(function() {
@@ -880,10 +882,9 @@ We are not affiliated with or endorsed by the U.S. government or the federal Med
             document.getElementById('selectedYear').textContent = year;
             currentStep = 5;
             
-            // Start timer after animation delay to sync with congratulations message
             setTimeout(function() {
                 startCountdown();
-            }, 1000); // Matches the animation-delay of congratulations message
+            }, 1000);
         }
 
         // Add click handler for phone number
@@ -894,12 +895,4 @@ We are not affiliated with or endorsed by the U.S. government or the federal Med
         });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
