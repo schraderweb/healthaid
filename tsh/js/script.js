@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
           
         <h1>TAP TO CALL</h1>
         <a href="tel:18337230131" class="call-button" id="callNowBtn">
-          <i class="fas fa-phone"></i> CLICK HERE TO CALL NOW AND CONFIRM YOUR ORDER
+          <i class="fas fa-phone"></i> CLICK HERE TO CALL NOW AND CONFIRM YOUR ORDER 1-833-448-3410
         </a>
         <h4>Pre-Order Hold Expires in: <span style="color: #ff0000;">00:00</span></h4>
       </div>
@@ -169,4 +169,5 @@ function startCountdown(duration, display) {
   }, 1000);
 
 }
+
 
