@@ -1,26 +1,48 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Start at question 1, which is the former question 2
+  // Current question index starts at 1, as the original Q1 was removed.
   let currentQuestionIndex = 1;
   let answers = {
-    // question1 (old one) removed
-    question1: null, // This is now the old question 2
-    question2: null  // This is now the old question 3
+    // question1 is now the 'insulin' question (old Q2)
+    question1: null,
+    // question2 is now the 'birth year' question (old Q3)
+    question2: null
   };
+  
+  // Cache the quiz button to show/hide the quiz
+  const quizButton = document.querySelector('.quiz-button');
+  const questionSection = document.querySelector('.question-section');
+  const infoSection = document.querySelector('.info-section');
+  
+  // Hide questions initially and set up quiz start button
+  if (questionSection) questionSection.style.display = 'none';
+
+  if (quizButton) {
+      quizButton.addEventListener('click', function() {
+          if (infoSection) infoSection.style.display = 'none';
+          if (questionSection) questionSection.style.display = 'block';
+          
+          // Ensure the first question is visible
+          const firstQuestion = document.querySelector("#question1");
+          if (firstQuestion) {
+              firstQuestion.style.opacity = 1;
+          }
+      });
+  }
+
 
   // Function to show the next question
   function nextQuestion(nextIndex, answer) {
-    // Since we removed the original question 1, the new flow is:
-    // Q1 (old Q2) -> Q2 (old Q3) -> Q3 (qualification check)
     const currentQuestion = document.querySelector(`#question${currentQuestionIndex}`);
     const nextQuestion = document.querySelector(`#question${nextIndex}`);
 
-    // Store the answer. Note: answers.question1 now stores the answer for 'Do you take insulin...'
+    // Store the answer.
     answers[`question${currentQuestionIndex}`] = answer;
 
     if (currentQuestion) {
       currentQuestion.style.opacity = 0;
       setTimeout(() => {
         currentQuestion.style.display = "none";
+        
         if (nextQuestion) {
           nextQuestion.style.display = "block";
           setTimeout(() => {
@@ -28,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
             currentQuestionIndex = nextIndex;
           }, 10);
         }
-        // If the last question (which is question 2 in the new flow) is answered, check qualification (nextIndex is 3)
+        
+        // If the qualification check index (3) is reached, run the check
         if (nextIndex === 3) {
           checkQualification();
         }
@@ -38,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to check if user qualifies
   function checkQualification() {
-    // Qualification: (old question 2 'yes') AND (old question 3 'before1961')
+    // Qualification: Must take insulin ('yes') AND be born before 1961 ('before1961').
     const qualifies = answers.question1 === 'yes' &&
                       answers.question2 === 'before1961';
 
@@ -54,23 +77,21 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "non-qualified.html";
   }
 
-  // Function to show sections 1, 2, and 3 one by one
+  // Function to show sections 1, 2, and 3 one by one (Fastened)
   function showSections() {
     const sections = ["section1", "section2", "section3"];
     let currentSectionIndex = 0;
-    const DISPLAY_TIME = 500; // Time in ms for sections to display
+    const DISPLAY_TIME = 500; // 0.5 seconds for quick loading transition
+
+    // Ensure the question section is hidden when we start loading
+    if (questionSection) {
+         questionSection.style.display = "none";
+    }
 
     function showNextSection() {
       if (currentSectionIndex < sections.length) {
         const currentSection = document.querySelector(`#${sections[currentSectionIndex]}`);
-        const questionSection = document.querySelector(".question-section");
         
-        // Hide the main question section while qualification screens run
-        if (questionSection) {
-             questionSection.style.display = "none";
-        }
-
-
         if (currentSection) {
           currentSection.style.display = "block";
           setTimeout(() => {
@@ -94,11 +115,11 @@ document.addEventListener("DOMContentLoaded", function () {
     showNextSection();
   }
 
-  // Function to show approval and call button (same as before, but with updated text)
+  // Function to show approval and call button
   function showApproval() {
     const finalSection = document.querySelector("#finalSection");
     if (finalSection) {
-      // Re-populate innerHTML to match the new design updates
+      // Re-populate innerHTML with updated text and phone number
       finalSection.innerHTML = `
         <div class="finalsection">
           <p><i class="fas fa-exclamation-triangle"></i> LOW STOCK ALERT</p>
@@ -135,7 +156,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  // Assign click handlers to question 1 buttons (now 'Do you take insulin...')
+  // --- Event Listeners for Quiz Buttons (NO INLINE ONCLICK) ---
+
+  // Assign click handlers to question 1 buttons ('Do you take insulin...')
   document.querySelectorAll("#question1 .answer-button").forEach((button, index) => {
     button.addEventListener("click", function () {
       const answer = index === 0 ? 'yes' : 'no';
@@ -144,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Assign click handlers to question 2 buttons (now 'What year were you born?')
+  // Assign click handlers to question 2 buttons ('What year were you born?')
   document.querySelectorAll("#question2 .answer-button").forEach((button, index) => {
     button.addEventListener("click", function () {
       let answer;
@@ -157,6 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// Global function for the countdown timer
 function startCountdown(duration, display) {
   let timer = duration, minutes, seconds;
   const interval = setInterval(function () {
