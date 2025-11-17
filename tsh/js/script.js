@@ -2,15 +2,16 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentQuestionIndex = 1;
   let answers = {
     question1: null,
-    question2: null
-   
+    question2: null,
+   question3: null
   };
 
   // Function to show the next question
   function nextQuestion(nextIndex, answer) {
     const currentQuestion = document.querySelector(`#question${currentQuestionIndex}`);
     const nextQuestion = document.querySelector(`#question${nextIndex}`);
-
+    const nextQuestion = document.querySelector(`#question${nextIndex}`);
+    
     // Store the answer
     answers[`question${currentQuestionIndex}`] = answer;
 
@@ -36,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to check if user qualifies
   function checkQualification() {
     const qualifies = answers.question1 === 'yes' && 
-                     answers.question2 === 'before1961';
+                      answers.question2 === 'yes' && 
+                     answers.question3 === 'before1961';
 
     if (qualifies) {
       showSections();
@@ -52,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to show sections 1, 2, and 3 one by one
   function showSections() {
-    const sections = ["section1", "section2"];
+    const sections = ["section1", "section2", "section3"];
     let currentSectionIndex = 0;
 
     function showNextSection() {
@@ -130,16 +132,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
- 
 
-  // Assign click handlers to question 2 buttons
+   // Assign click handlers to question 2 buttons
   document.querySelectorAll("#question2 .answer-button").forEach((button, index) => {
+    button.addEventListener("click", function () {
+      const answer = index === 0 ? 'yes' : 'no';
+      nextQuestion(3, answer);
+    });
+  });
+
+  // Assign click handlers to question 3 buttons
+  document.querySelectorAll("#question3 .answer-button").forEach((button, index) => {
     button.addEventListener("click", function () {
       let answer;
       if (index === 0) answer = 'before1961';
       else if (index === 1) answer = '1961-2000';
       else answer = 'after2000';
-      nextQuestion(3, answer);
+      nextQuestion(4, answer);
     });
   });
 });
@@ -162,6 +171,7 @@ function startCountdown(duration, display) {
   }, 1000);
 
 }
+
 
 
 
