@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGM Medicare Benefit Program</title>
+
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1358238982322152');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1358238982322152&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 864px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            color: white;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .warning {
+            background: #dc3545;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 5px 0 0 5px;
+            margin-right: -5px;
+        }
+
+        .enrollment {
+            background: #000000;
+            display: inline-block;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .title {
+            font-size: 1.575rem;
+            line-height: 2.25rem;
+            font-weight: 700;
+            margin-top: 0.25rem;
+            text-align: center;
+        }
+
+        .online-indicator {
+            text-align: center;
+            color: #28a745;
+            font-size: 0.8rem;
+            margin-bottom: 2px;
+            margin-top: 1rem;
+        }
+
+        .online-dot {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: #28a745;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .chat-container {
+            padding: 0 20px 30px;
+            min-height: 300px;
+            max-width: 468px;
+            margin: 0 auto;
+        }
+
+        .message {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.5s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.left {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .message.right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            flex-shrink: 0;
+            box-sizing: border-box;
+            outline-style: none !important;
+            outline: 0 !important;
+        }
+
+        .avatar img {
+            border-radius: 9999px;
+            width: 28px;
+            height: 28px;
+            max-width: 100%;
+            display: block;
+            box-sizing: border-box;
+            outline-style: none !important;
+            outline: 0 !important;
+        }
+
+        .message-content {
+            padding: 0.75rem;
+            background-color: rgb(229 231 235 / 1);
+            color: rgb(31 41 55 / 1);
+            border-radius: 0.5rem;
+            width: fit-content;
+            margin-top: 0.5rem;
+            cursor: default;
+            scroll-margin-bottom: 150px;
+            max-width: 68%;
+        }
+
+        .message.left .message-content {
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.right .message-content {
+            background: #007bff;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .greeting-message {
+            padding: 0.75rem;
+            background-color: rgb(229 231 235 / 1);
+            color: rgb(31 41 55 / 1);
+            border-radius: 0.5rem;
+            width: fit-content;
+            margin-top: 0.5rem;
+            cursor: default;
+            scroll-margin-bottom: 150px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+        }
+
+        .btn-large {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        .age-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .flex{
+                color: black;
+    margin-bottom: 1rem;
+    font-size: 15px;
+    font-weight: bolder;
+}
+        
+        .minititle{
+
+            text-align: center;
+    margin-top: 1rem;
+    font-weight: bolder;
+    font-size: 21px;
+        }
+        .countdown {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            padding-left: 270px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .countdown.visible {
+            opacity: 1;
+        }
+
+        .countdown-timer {
+            font-size: 48px;
+            font-weight: bold;
+            color: #222222;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+
+        .countdown-text {
+            color: #6c757d;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .congratulations {
+            background: rgb(229 231 235 / 1);
+            color: rgb(31 41 55 / 1);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .benefit-info {
+            padding: 0.75rem;
+            background-color: rgb(229 231 235 / 1);
+            color: rgb(31 41 55 / 1);
+            border-radius: 0.5rem;
+            width: fit-content;
+            margin-top: 0.5rem;
+            cursor: default;
+            scroll-margin-bottom: 150px;
+        }
+
+        .disclaimer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #6c757d;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .btns {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 9999px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        @keyframes vibrate {
+            0% { transform: translateY(0); }
+            20% { transform: translateY(-1px); }
+            40% { transform: translateY(1px); }
+            60% { transform: translateY(-1px); }
+            80% { transform: translateY(1px); }
+            100% { transform: translateY(0); }
+        }
+
+        .vibrate {
+            animation: vibrate 0.3s linear infinite;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .title {
+                 font-size: 17px;
+                    line-height: 1.45rem;
+    font-weight: 700;
+    margin-top: 0.25rem;
+    text-align: center;
+            }
+            .flex{
+                font-size: 13px;
+            }
+            .chat-container {
+                padding: 0 15px 20px;
+            }
+            
+            .message-content {
+                max-width: 85%;
+                font-size: 14px;
+            }
+              .minititle{
+
+            text-align: center;
+    margin-top: 1rem;
+    font-weight: bolder;
+    font-size: 16px;
+        }
+            .countdown-timer {
+                font-size: 36px;
+            }
+
+            .countdown {
+                text-align: center;
+                margin-top: 30px;
+                padding: 20px;
+                padding-left: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .trust-logos {
+                gap: 15px;
+            }
+            
+            .trust-logo-quarter,
+            .trust-logo-half {
+                flex: 0 0 45%;
+                max-width: 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .title {
+                font-size: 17px;
+                    line-height: 1.45rem;
+    font-weight: 700;
+    margin-top: 0.25rem;
+    text-align: center;
+            }
+            .btns{
+                    font-size: 13px;
+            }
+            .message-content {
+                max-width: 70%;
+                padding: 10px 14px;
+            }
+            
+            .btn {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .countdown {
+                text-align: center;
+                margin-top: 30px;
+                padding: 20px;
+                padding-left: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .benefit-info {
+                max-width: 79%;
+            }
+            
+            .trust-logos {
+                align-items: center;
+                padding:0 0px 0px;
+                gap: 10px;
+            }
+            
+            .trust-logo-quarter{
+                flex: 0 0 20%;
+                max-width: 40px;
+            }
+            .trust-logo-half {
+                flex: 0 0 55%;
+                max-width: 80px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .para {
+            font-weight: 700;
+            margin-top: 0.5rem;
+            margin: 0;
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+
+        .warning1 {
+            text-align: center;
+            display: inline-block;
+            color: rgb(0, 0, 0);
+            text-transform: uppercase;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
+        .Enrollment {
+            text-align: center;
+            display: inline-block;
+            color: rgb(0, 0, 0);
+            height: auto;
+            padding: 5px 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-left: -24px;
+            box-sizing: border-box;
+        }
+        
+        .trust-logos {
+            display: flex;
+            padding-left: 10%;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 0 20px 20px;
+            margin-top: 30px;
+        }
+        
+        .trust-logos img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            background: white;
+            padding: 10px;
+            object-fit: contain;
+        }
+        
+        .trust-logo-quarter {
+            flex: 0 0 25%;
+            max-width: 20%;
+            min-width: 70px;
+        }
+        
+        .trust-logo-half {
+            flex: 0 0 50%;
+            max-width: 55%;
+            min-width: 120px;
+        }
+
+        @media (max-width: 420px) {
+            .trust-logos {
+            flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <p class="para text-md sm:text-lg font-bold mt-2">
+                <div class="flex" style="    color: black;
+    margin-bottom: 1rem;"><span style="color: #dc3545;">⚠️ Warning:</span> Enrollment Ends Soon Claim Your Medicare-Covered CGM Before Stock Runs Out</div>
+            </p>
+        </div>
+
+        <h1 class="title">A New Medicare benefit now covers Continuous Glucose Monitors</h1>
+
+        <div class="online-indicator">
+            <span class="online-dot"></span>
+          
+Emily is Online.
+        </div>
+        <div class="chat-container">
+            <!-- Step 1: Initial Messages -->
+            <div id="step1" class="step">
+                <div class="message left" style="animation-delay: 0.5s;">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="greeting-message">Hi 👋</div>
+                </div>
+                
+                <div class="message left" style="animation-delay: 1s;">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">I'm Emily from Senior Benefits Direct</div>
+                </div>
+                
+                <div class="message left" style="animation-delay: 1.5s;">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        Want to see if you qualify for a FREE Continuous Glucose Monitor through Medicare? Tap Yes! 😃
+                        <div class="button-group">
+                            <button class="btn" onclick="goToStep2()">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: First Question -->
+            <div id="step2" class="step hidden">
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="greeting-message">Hi 👋</div>
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">I'm Emily from Senior Benefits Direct</div>
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        Want to see if you qualify for a FREE Continuous Glucose Monitor through Medicare? Tap Yes! 😃
+                    </div>
+                </div>
+                
+                <div class="message right avatar">
+                    <div class="message-content">Yes</div>
+                    <img src="https://healthsubsidies.net/MEDICGM/user.jpg" alt="">
+                </div>
+                
+                <div class="message left" style="animation-delay: 1s;">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        Awesome! Let me ask you a few quick questions to check your eligibility.
+                    </div>
+                </div>
+                
+                <div class="message left" style="animation-delay: 1.5s;">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        I'm pulling up the questions now — one moment.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Second Question -->
+            <div id="step3" class="step hidden">
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="greeting-message">Hi 👋</div>
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">I'm Emily from Senior Benefits Direct</div>
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        Want to see if you qualify for a FREE Continuous Glucose Monitor through Medicare? Tap Yes! 😃
+                    </div>
+                </div>
+                
+                <div class="message right avatar">
+                    <div class="message-content">Yes</div>
+                    <img src="https://healthsubsidies.net/MEDICGM/user.jpg" alt="">
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        Awesome! Let me ask you a few quick questions to check your eligibility.
+                    </div>
+                </div>
+                
+                <div class="message left" style="animation-delay: 1s;">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        ✅ Do you take insulin at least once per day?
+                        <div class="age-buttons">
+                            <button class="btn" onclick="goToStep4('Yes')">Yes</button>
+                            <button class="btn" onclick="disqualify()">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Third Question -->
+            <div id="step4" class="step hidden">
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="greeting-message">Hi 👋</div>
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">I'm Emily from Senior Benefits Direct</div>
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        Want to see if you qualify for a FREE Continuous Glucose Monitor through Medicare? Tap Yes! 😃
+                    </div>
+                </div>
+                
+                <div class="message right avatar">
+                    <div class="message-content">Yes</div>
+                    <img src="https://healthsubsidies.net/MEDICGM/user.jpg" alt="">
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        Awesome! Let me ask you a few quick questions to check your eligibility.
+                    </div>
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        ✅ Do you take insulin at least once per day?
+                    </div>
+                </div>
+                
+                <div class="message right avatar">
+                    <div class="message-content" id="answer2">Yes</div>
+                    <img src="https://healthsubsidies.net/MEDICGM/user.jpg" alt="">
+                </div>
+                
+                <div class="message left" style="animation-delay: 1s;">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        ✅ What year were you born?
+                        <div class="age-buttons">
+                            <button class="btn" onclick="goToStep5('Before 1961')">Before 1961</button>
+                            <button class="btn" onclick="disqualify()">1961–2000</button>
+                            <button class="btn" onclick="disqualify()">After 2000</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Congratulations -->
+            <div id="step5" class="step hidden">
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="greeting-message">Hi 👋</div>
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">I'm Emily from Senior Benefits Direct</div>
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        Want to see if you qualify for a FREE Continuous Glucose Monitor through Medicare? Tap Yes! 😃
+                    </div>
+                </div>
+                
+                <div class="message right avatar">
+                    <div class="message-content">Yes</div>
+                    <img src="https://healthsubsidies.net/MEDICGM/user.jpg" alt="">
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        Awesome! Let me ask you a few quick questions to check your eligibility.
+                    </div>
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        ✅ Do you take insulin at least once per day?
+                    </div>
+                </div>
+                
+                <div class="message right avatar">
+                    <div class="message-content">Yes</div>
+                    <img src="https://healthsubsidies.net/MEDICGM/user.jpg" alt="">
+                </div>
+                
+                <div class="message left">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="message-content">
+                        ✅ What year were you born?
+                    </div>
+                </div>
+                
+                <div class="message right avatar">
+                    <div class="message-content" id="selectedYear">Before 1961</div>
+                    <img src="https://healthsubsidies.net/MEDICGM/user.jpg" alt="">
+                </div>
+                
+                <div class="message left" id="congratsMessage" style="animation-delay: 1s;">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="congratulations">🎉 Congratulations! 🎉</div>
+                </div>
+                
+                <div class="message left" style="animation-delay: 1s;">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="benefit-info">
+                        You're pre-qualified to receive a Continuous Glucose Monitor through Medicare.<br>
+                        <img src="glucose monitor.jpeg" alt="Continuous Glucose Monitor covered by Medicare" style="width:100%;max-width:360px;border-radius:12px;margin:10px 0;">
+                        This device helps you check your glucose levels without finger-pricks — and may be covered with little to no out-of-pocket cost.
+                    </div>
+                </div>
+                
+                <div class="message left" style="animation-delay: 1s;">
+                    <div class="avatar">
+                        <img src="https://healthsubsidies.net/MEDICGM/agent.jpg" alt="">
+                    </div>
+                    <div class="leftconte">
+                        <div class="message-content">
+                            Tap the number below to call now and confirm your eligibility. It only takes 2 minutes — be sure to mention you're calling about your Medicare CGM Benefit.
+                        </div>
+                        <div class="message-content">
+                          <div class="button-groups">
+                            <button 
+                                id="callButton"
+                                class="btns btn-large vibrate" 
+                                onclick="fbq('track', 'Lead'); window.location.href='tel:+18337230131';">
+                                📞 +1 (833) 723-0131
+                            </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="countdown" id="countdownSection">
+            <div class="countdown-timer" id="timer">02:00</div>
+            <div class="countdown-text">
+                Your call is reserved for this time!
+            </div>
+        </div>
+        
+        <div class="trust-logos">
+            <img class="trust-logo-quarter" src="HIPPA logo.png" alt="HIPAA logo">
+            <img class="trust-logo-half" src="medicare logo.png" alt="Medicare logo">
+            <img class="trust-logo-quarter" src="BBB logo.png" alt="BBB Accredited Business seal">
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        DISCLAIMER: This site is not part of Facebook or Meta Platforms, Inc. It is not endorsed by Facebook in any way. Facebook is a trademark of Meta Platforms, Inc.
+We are not affiliated with or endorsed by the U.S. government or the federal Medicare program. This is a paid advertisement for Medicare insurance services. Calls may be connected to a licensed insurance agent. Enrollment in any plan depends on contract renewal. This site and its content are for informational purposes only.
+        <br><br>@2025. All rights Reserved.
+        <a href="https://healthsubsidies.net/MEDICGM/privacy.html" style="color: #007bff;">Privacy Policy</a> | <a href="https://healthsubsidies.net/MEDICGM/term.html" style="color: #007bff;">Terms & Conditions</a>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let countdownTimer;
+        let timeLeft = 120;
+        let timerStarted = false;
+
+        // Disqualification function
+        function disqualify() {
+            window.location.href = 'https://healthsubsidies.net/tsh/non-qualified.html';
+        }
+
+        // Initialize countdown
+        function startCountdown() {
+            if (timerStarted) return;
+            timerStarted = true;
+            
+            document.getElementById('countdownSection').classList.add('visible');
+            
+            countdownTimer = setInterval(function() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    document.getElementById('timer').textContent = '00:00';
+                } else {
+                    timeLeft--;
+                }
+            }, 1000);
+        }
+
+        function goToStep2() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+            currentStep = 2;
+            
+            setTimeout(function() {
+                goToStep3();
+            }, 1000);
+        }
+        
+        function goToStep3() {
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+            currentStep = 3;
+        }
+
+        function goToStep4(answer) {
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step4').classList.remove('hidden');
+            document.getElementById('answer2').textContent = answer;
+            currentStep = 4;
+        }
+
+        function goToStep5(year) {
+            document.getElementById('step4').classList.add('hidden');
+            document.getElementById('step5').classList.remove('hidden');
+            document.getElementById('selectedYear').textContent = year;
+            currentStep = 5;
+            
+            setTimeout(function() {
+                startCountdown();
+                scrollToCallButton();
+            }, 1000);
+        }
+        
+        function scrollToCallButton() {
+            const callButton = document.getElementById('callButton');
+            if (callButton) {
+                callButton.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Add click handler for phone number
+        document.addEventListener('click', function(e) {
+            if (e.target.textContent.includes('+1 (833) 723-0131')) {
+                window.location.href = 'tel:+18337230131';
+            }
+        });
+    </script>
+</body>
+</html>
