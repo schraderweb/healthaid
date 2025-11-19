@@ -19,6 +19,7 @@ body {
   padding: 8px 0px;
   font-size: 13px;
   text-align: center;
+  position: fixed;
 }
 .header p span{
   font-weight: bold;
@@ -285,4 +286,5 @@ footer > p {
     margin-top: 20px;
     margin-bottom: 20px;
   }
+
 }
