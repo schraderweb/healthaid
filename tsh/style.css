@@ -23,7 +23,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  bottom-padding: 200px;
+  padding-bottom: 200px;
 }
 .header p span{
   font-weight: bold;
@@ -292,6 +292,7 @@ footer > p {
   }
 
 }
+
 
 
 
