@@ -1,17 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let currentQuestionIndex = 1;
+  let currentQuestionIndex = 2;
   let answers = {
     question1: null,
     question2: null,
-   question3: null
+    question3: null
   };
 
   // Function to show the next question
   function nextQuestion(nextIndex, answer) {
     const currentQuestion = document.querySelector(`#question${currentQuestionIndex}`);
     const nextQuestion = document.querySelector(`#question${nextIndex}`);
-    const nextQuestion = document.querySelector(`#question${nextIndex}`);
-    
+
     // Store the answer
     answers[`question${currentQuestionIndex}`] = answer;
 
@@ -36,8 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to check if user qualifies
   function checkQualification() {
-    const qualifies = answers.question1 === 'yes' && 
-                      answers.question2 === 'yes' && 
+    // const qualifies = answers.question1 === 'yes' && 
+    //                  answers.question2 === 'yes' && 
+    //                  answers.question3 === 'before1961';
+    const qualifies = answers.question2 === 'yes' && 
                      answers.question3 === 'before1961';
 
     if (qualifies) {
@@ -72,8 +73,8 @@ document.addEventListener("DOMContentLoaded", function () {
               currentSection.style.display = "none";
               currentSectionIndex++;
               showNextSection();
-            }, 1000);
-          }, 2000);
+            }, 700);
+          }, 700);
         }
       } else {
         showApproval();
@@ -99,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
           
         <h1>TAP TO CALL</h1>
         <a href="tel:18337230131" class="call-button" id="callNowBtn">
-          <i class="fas fa-phone"></i> CLICK HERE TO CALL NOW AND CONFIRM YOUR ORDER 1-833-448-3410
+          <i class="fas fa-phone"></i> CLICK HERE TO CALL NOW AND CONFIRM YOUR ORDER
         </a>
         <h4>Pre-Order Hold Expires in: <span style="color: #ff0000;">00:00</span></h4>
       </div>
@@ -132,8 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-
-   // Assign click handlers to question 2 buttons
+  // Assign click handlers to question 2 buttons
   document.querySelectorAll("#question2 .answer-button").forEach((button, index) => {
     button.addEventListener("click", function () {
       const answer = index === 0 ? 'yes' : 'no';
@@ -171,7 +171,3 @@ function startCountdown(duration, display) {
   }, 1000);
 
 }
-
-
-
-
