@@ -33,6 +33,7 @@ body {
 
 .main-content {
   text-align: center;
+  padding: 150px;
 }
 
 .main-content > .container {
@@ -292,6 +293,7 @@ footer > p {
   }
 
 }
+
 
 
 
