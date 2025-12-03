@@ -46,11 +46,12 @@
                     showDisqualification();
                 }
             }
-
-            function showDisqualification() {
-                alert("Unfortunately, you do not qualify at this time.");
-            }
-
+    
+  // Function to show disqualification message
+  function showDisqualification() {
+  window.location.href = "non-qualified.html";
+}
+          
             function showSections() {
                 const sections = ["section1", "section2"];
                 let currentSectionIndex = 0;
@@ -162,3 +163,4 @@ medicare Benefits.
             }, 1000);
 
         }
+
