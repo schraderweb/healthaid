@@ -97,8 +97,8 @@ medicare Benefits.
                             
                             
                             <h1>CALL NOW TO CLAIM YOUR CGM </h1>
-                            <a href="tel:18337230131" class="call-button" id="callNowBtn">
-                                <i class="fas fa-phone"></i> 1-83-372-30131   
+                            <a href="tel:18338070586" class="call-button" id="callNowBtn">
+                                <i class="fas fa-phone"></i> 1-833-807-0586   
                             </a>
                             <h4>Pre-Order Hold Expires in: <span style="color: #ff0000;">00:00</span></h4>
                             <p><i class="fas fa-exclamation-triangle"></i> LOW STOCK ALERT</p>
@@ -160,4 +160,5 @@ medicare Benefits.
                     display.textContent = "00:00";
                 }
             }, 1000);
+
         }
