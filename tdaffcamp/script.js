@@ -1,4 +1,27 @@
-  document.addEventListener("DOMContentLoaded", function () {
+ // --- Trackdesk CID Retrieval Function (Step 2) - START [cite: 11] ---
+function getTrackdeskCid() {
+    if (window.tdCid) return window.tdCid; [cite: 11]
+    
+    var match = document.cookie.match(/(?:^|;\s*)trakdesk_cid=([^;]+)/); [cite: 11]
+    if (!match) return null; [cite: 12]
+
+    var raw = decodeURIComponent(match[1]); [cite: 13]
+
+    // If cookie contains JSON (typical Trackdesk format) [cite: 14]
+    if (raw.charAt(0) === "{") { [cite: 15]
+        try { [cite: 16]
+            var obj = JSON.parse(raw); [cite: 17]
+            return obj && obj.cid ? obj.cid : null; [cite: 18]
+        } catch (e) { [cite: 19]
+            console.warn("Trackdesk cookie JSON parse failed:", e); [cite: 20]
+            return null; [cite: 21]}
+        }
+    // Fallback if cookie is plain text [cite: 23]
+    return raw; [cite: 24]
+}
+// --- Trackdesk CID Retrieval Function (Step 2) - END ---
+
+document.addEventListener("DOMContentLoaded", function () {
             let currentQuestionIndex = 2;
             let answers = {
                 question1: null,
@@ -122,6 +145,19 @@ medicare Benefits.
                                 if (typeof fbq === "function") {
                                     fbq("track", "Lead");
                                 }
+                              // Trackdesk Conversion Tracking (Step 2) - START [cite: 26]
+                                var cid = getTrackdeskCid(); [cite: 27]
+                                if (cid) { [cite: 27]
+                                    var url = [cite: 27]
+                                        "https://tsh.trackdesk.com/tracking/conversion/v1" [cite: 27]
+                                        + "?status=CONVERSION_STATUS_APPROVED" [cite: 27]
+                                        + "&cid=" + encodeURIComponent(cid) [cite: 27]
+                                        + "&conversionTypeCode=callbutton"; [cite: 27]
+                                    (new Image()).src = url; [cite: 28]
+                                } else { [cite: 28]
+                                    console.warn("Trackdesk CID not found; conversion not sent."); [cite: 28]
+                                }
+                                // Trackdesk Conversion Tracking (Step 2) - END
                             });
                         }
                     }, 10);
@@ -164,4 +200,5 @@ medicare Benefits.
             }, 1000);
 
         }
+
 
