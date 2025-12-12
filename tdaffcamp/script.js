@@ -1,23 +1,23 @@
- // --- Trackdesk CID Retrieval Function (Step 2) - START [cite: 11] ---
+// --- Trackdesk CID Retrieval Function (Step 2) - START (Defined globally for safety) ---
 function getTrackdeskCid() {
-    if (window.tdCid) return window.tdCid; [cite: 11]
+    if (window.tdCid) return window.tdCid;
     
-    var match = document.cookie.match(/(?:^|;\s*)trakdesk_cid=([^;]+)/); [cite: 11]
-    if (!match) return null; [cite: 12]
+    var match = document.cookie.match(/(?:^|;\s*)trakdesk_cid=([^;]+)/);
+    if (!match) return null;
 
-    var raw = decodeURIComponent(match[1]); [cite: 13]
+    var raw = decodeURIComponent(match[1]);
 
-    // If cookie contains JSON (typical Trackdesk format) [cite: 14]
-    if (raw.charAt(0) === "{") { [cite: 15]
-        try { [cite: 16]
-            var obj = JSON.parse(raw); [cite: 17]
-            return obj && obj.cid ? obj.cid : null; [cite: 18]
-        } catch (e) { [cite: 19]
-            console.warn("Trackdesk cookie JSON parse failed:", e); [cite: 20]
-            return null; [cite: 21]}
+    // If cookie contains JSON (typical Trackdesk format)
+    if (raw.charAt(0) === "{") {
+        try {
+            var obj = JSON.parse(raw);
+            return obj && obj.cid ? obj.cid : null;
+        } catch (e) {
+            console.warn("Trackdesk cookie JSON parse failed:", e);
+            return null;}
         }
-    // Fallback if cookie is plain text [cite: 23]
-    return raw; [cite: 24]
+    // Fallback if cookie is plain text
+    return raw;
 }
 // --- Trackdesk CID Retrieval Function (Step 2) - END ---
 
@@ -28,6 +28,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 question2: null,
                 question3: null
             };
+
+            // --- NEW: Track Header Call Button Click - START ---
+            const headerCallBtn = document.getElementById("headerCallBtn");
+            if (headerCallBtn) {
+                headerCallBtn.addEventListener("click", () => {
+                    // The fbq('track', 'Lead') is handled by the inline onclick in HTML.
+                    
+                    var cid = getTrackdeskCid();
+                    if (cid) {
+                        var url =
+                            "https://tsh.trackdesk.com/tracking/conversion/v1"
+                            + "?status=CONVERSION_STATUS_APPROVED"
+                            + "&cid=" + encodeURIComponent(cid)
+                            + "&conversionTypeCode=callbutton";
+                        (new Image()).src = url;
+                    } else {
+                        console.warn("Trackdesk CID not found; header conversion not sent.");
+                    }
+                });
+            }
+            // --- NEW: Track Header Call Button Click - END ---
 
             function nextQuestion(nextIndex, answer) {
                 const currentQuestion = document.querySelector(`#question${currentQuestionIndex}`);
@@ -70,11 +91,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
-          
-  // Function to show disqualification message
-  function showDisqualification() {
-  window.location.href = "nonqual.html";
-}
+            function showDisqualification() {
+                alert("Unfortunately, you do not qualify at this time.");
+            }
 
             function showSections() {
                 const sections = ["section1", "section2"];
@@ -122,8 +141,8 @@ medicare Benefits.
                             
                             
                             <h1>CALL NOW TO CLAIM YOUR CGM </h1>
-                            <a href="tel:18338070586" class="call-button" id="callNowBtn">
-                                <i class="fas fa-phone"></i> 1-833-807-0586   
+                            <a href="tel:18337230131" class="call-button" id="callNowBtn">
+                                <i class="fas fa-phone"></i> 1-83-372-30131   
                             </a>
                             <h4>Pre-Order Hold Expires in: <span style="color: #ff0000;">00:00</span></h4>
                             <p><i class="fas fa-exclamation-triangle"></i> LOW STOCK ALERT</p>
@@ -145,17 +164,18 @@ medicare Benefits.
                                 if (typeof fbq === "function") {
                                     fbq("track", "Lead");
                                 }
-                              // Trackdesk Conversion Tracking (Step 2) - START [cite: 26]
-                                var cid = getTrackdeskCid(); [cite: 27]
-                                if (cid) { [cite: 27]
-                                    var url = [cite: 27]
-                                        "https://tsh.trackdesk.com/tracking/conversion/v1" [cite: 27]
-                                        + "?status=CONVERSION_STATUS_APPROVED" [cite: 27]
-                                        + "&cid=" + encodeURIComponent(cid) [cite: 27]
-                                        + "&conversionTypeCode=callbutton"; [cite: 27]
-                                    (new Image()).src = url; [cite: 28]
-                                } else { [cite: 28]
-                                    console.warn("Trackdesk CID not found; conversion not sent."); [cite: 28]
+                                
+                                // Trackdesk Conversion Tracking (Step 2) - START
+                                var cid = getTrackdeskCid();
+                                if (cid) {
+                                    var url =
+                                        "https://tsh.trackdesk.com/tracking/conversion/v1"
+                                        + "?status=CONVERSION_STATUS_APPROVED"
+                                        + "&cid=" + encodeURIComponent(cid)
+                                        + "&conversionTypeCode=callbutton";
+                                    (new Image()).src = url;
+                                } else {
+                                    console.warn("Trackdesk CID not found; conversion not sent.");
                                 }
                                 // Trackdesk Conversion Tracking (Step 2) - END
                             });
@@ -198,7 +218,9 @@ medicare Benefits.
                     display.textContent = "00:00";
                 }
             }, 1000);
+        }
 
         }
+
 
 
