@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 question3: null
             };
 
-            // --- NEW: Track Header Call Button Click - START ---
+            // --- Tracking for Header Call Button (First button user sees) - START ---
             const headerCallBtn = document.getElementById("headerCallBtn");
             if (headerCallBtn) {
                 headerCallBtn.addEventListener("click", () => {
-                    // The fbq('track', 'Lead') is handled by the inline onclick in HTML.
+                    // fbq('track', 'Lead') is still handled by the inline onclick in HTML.
                     
                     var cid = getTrackdeskCid();
                     if (cid) {
@@ -42,13 +42,15 @@ document.addEventListener("DOMContentLoaded", function () {
                             + "?status=CONVERSION_STATUS_APPROVED"
                             + "&cid=" + encodeURIComponent(cid)
                             + "&conversionTypeCode=callbutton";
+                        // This fires the Trackdesk postback request
                         (new Image()).src = url;
                     } else {
                         console.warn("Trackdesk CID not found; header conversion not sent.");
                     }
                 });
             }
-            // --- NEW: Track Header Call Button Click - END ---
+            // --- Tracking for Header Call Button - END ---
+
 
             function nextQuestion(nextIndex, answer) {
                 const currentQuestion = document.querySelector(`#question${currentQuestionIndex}`);
@@ -165,7 +167,7 @@ medicare Benefits.
                                     fbq("track", "Lead");
                                 }
                                 
-                                // Trackdesk Conversion Tracking (Step 2) - START
+                                // Trackdesk Conversion Tracking (Final Button) - START
                                 var cid = getTrackdeskCid();
                                 if (cid) {
                                     var url =
@@ -177,7 +179,7 @@ medicare Benefits.
                                 } else {
                                     console.warn("Trackdesk CID not found; conversion not sent.");
                                 }
-                                // Trackdesk Conversion Tracking (Step 2) - END
+                                // Trackdesk Conversion Tracking (Final Button) - END
                             });
                         }
                     }, 10);
@@ -187,6 +189,12 @@ medicare Benefits.
             document.querySelectorAll("#question2 .answer-button").forEach((button, index) => {
                 button.addEventListener("click", function () {
                     const answer = index === 0 ? 'yes' : 'no';
+                    
+                    // Original "Yes" button logic (index 0) moved here for stability
+                    if (index === 0) {
+                        setTimeout(() => document.querySelectorAll('#hides').forEach(el => el.style.display = 'none'), 600);
+                    }
+                    
                     nextQuestion(3, answer);
                 });
             });
@@ -219,8 +227,5 @@ medicare Benefits.
                 }
             }, 1000);
         }
-
-        }
-
 
 
