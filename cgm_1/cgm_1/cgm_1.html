@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TSH - CGM Benefit</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #fff; color: #111; line-height: 1.6; }
+
+    /* ── HEADER BANNER ── */
+    .header {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 9px 20px;
+      text-align: center;
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .header-alert { display: flex; align-items: center; gap: 7px; color: #f5c518; }
+    .header-alert i { font-size: 11px; }
+    .header-alert strong { font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #f5c518; }
+    .header-alert span { color: #ddd; font-weight: 500; }
+    #countdown { font-variant-numeric: tabular-nums; letter-spacing: 1.5px; color: #fff; }
+
+    /* ── LAYOUT ── */
+    .main-content { padding-top: 44px; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(180deg, #0b1e3d 0%, #102c58 100%);
+      padding: 44px 24px 40px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(245,197,24,0.15);
+      border: 1px solid rgba(245,197,24,0.4);
+      color: #f5c518;
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      padding: 5px 14px; border-radius: 3px; margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: 30px; font-weight: 900; line-height: 1.3;
+      color: #fff; margin-bottom: 10px;
+      max-width: 660px; margin-left: auto; margin-right: auto;
+    }
+    .hero h1 em { font-style: normal; color: #f5c518; }
+    .hero-sub { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 0; }
+
+    /* ── QUIZ WRAPPER ── */
+    .quiz-wrapper {
+      background: #fff; border-radius: 10px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.11);
+      margin: 28px auto; max-width: 620px; overflow: hidden;
+    }
+    .quiz-label {
+      background: #f8f9fa; border-bottom: 1px solid #e8e8e8;
+      padding: 14px 24px; font-size: 13px; font-weight: 700;
+      color: #555; text-transform: uppercase; letter-spacing: 1px; text-align: center;
+    }
+    .quiz-inner { padding: 28px 28px 24px; min-height: 190px; }
+    .question { display: none; opacity: 0; transition: opacity 0.5s ease; }
+    .question.active { display: block; }
+    .question.fade-in { opacity: 1; }
+    .question p {
+      font-size: 21px; font-weight: 800; color: #0d1f3c;
+      margin-bottom: 22px; text-align: center; line-height: 1.4;
+    }
+    .answer-button {
+      display: block; width: 100%; padding: 15px 20px; margin: 10px 0;
+      font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700;
+      color: #fff; background: #0d56b8; border: none; border-radius: 6px;
+      cursor: pointer; transition: background 0.15s, transform 0.1s;
+    }
+    .answer-button:hover { background: #0a44a0; transform: translateY(-1px); }
+    .answer-button.no-btn { background: #6b7280; }
+    .answer-button.no-btn:hover { background: #4b5563; }
+
+    /* ── PROCESSING ── */
+    .fade-section { display: none; opacity: 0; transition: opacity 0.6s ease; text-align: center; padding: 40px 20px; }
+    .fade-section.active { display: block; }
+    .fade-section.fade-in { opacity: 1; }
+    .fade-section h2 {
+      font-size: 17px; font-weight: 700; color: #333;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .fade-section h2::before {
+      content: ''; width: 18px; height: 18px;
+      border: 2.5px solid #0d56b8; border-top-color: transparent;
+      border-radius: 50%; display: inline-block;
+      animation: spin 0.75s linear infinite; flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── FINAL SECTION ── */
+    .finalsection { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+    .qualify-strip {
+      background: #e8f5ee; border: 1.5px solid #2e9e5b; border-radius: 5px;
+      color: #1c7a43; font-size: 13px; font-weight: 700;
+      padding: 8px 16px; width: 100%; margin-bottom: 10px; letter-spacing: 0.3px;
+    }
+    .finalsection h3 { font-size: 21px; font-weight: 800; color: #0d1f3c; line-height: 1.4; margin-bottom: 6px; }
+    .finalsection h1 { font-size: 15px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.8px; margin: 10px 0 6px; }
+    .call-button {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 19px 20px;
+      font-family: 'Inter', sans-serif; font-size: 23px; font-weight: 900;
+      background: linear-gradient(180deg, #27ae60 0%, #1e8449 100%);
+      color: #fff; text-decoration: none; border-radius: 7px; border: none;
+      cursor: pointer; margin: 6px 0 14px;
+      box-shadow: 0 4px 18px rgba(30,132,73,0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+      animation: pulse-cta 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse-cta {
+      0%, 100% { box-shadow: 0 4px 18px rgba(30,132,73,0.4); }
+      50%       { box-shadow: 0 6px 28px rgba(30,132,73,0.6); }
+    }
+    .call-button:hover { transform: translateY(-2px); color: #fff; }
+    .expire-label { font-size: 13px; font-weight: 600; color: #888; margin-bottom: 10px; }
+    .expire-label span { color: #c0392b; font-weight: 800; }
+    .stock-bar {
+      background: #fffbeb; border: 1px solid #f59e0b; border-radius: 5px;
+      padding: 9px 16px; font-size: 13px; font-weight: 700; color: #78350f;
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+
+    /* ── PROGRAM BANNER ── */
+    .main-image { margin: 24px auto; text-align: center; }
+    .main-image img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 3px 16px rgba(0,0,0,0.1); }
+
+    /* ── INFO SECTION ── */
+    .info-section {
+      background: #fff; border: 1px solid #e0e3e8; border-radius: 10px;
+      padding: 32px 28px; margin: 0 auto 24px; max-width: 860px; text-align: center;
+    }
+    .info-section > p { font-size: 17px; line-height: 1.8; color: #333; margin-bottom: 20px; }
+    .info-section > p span { color: #cc0000; font-weight: 700; }
+    .info-section > p span.dark { color: #111; font-weight: 700; }
+
+    /* AS SEEN ON TV */
+    .astv-heading {
+      font-size: 20px; font-weight: 900; color: #cc0000;
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 18px; margin-top: 4px;
+    }
+
+    /* ── MEDIA LOGOS (as-seen-tv.jpg replacement grid) ── */
+    .media-logos-img {
+      width: 85%;
+      max-width: 560px;
+      height: auto;
+      margin: 0 auto 24px;
+      display: block;
+      border-radius: 0;
+      box-shadow: none !important;
+    }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial {
+      background: #fff; border: 1px solid #e0e3e8; border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 24px 24px; max-width: 700px; margin: 20px auto 0; text-align: left;
+    }
+    .testimonial-label {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: #999; margin-bottom: 16px; text-align: center;
+    }
+    .bubble { background: #f9fafb; border: 1px solid #ebebeb; border-radius: 8px; padding: 20px 22px; }
+    .flexy { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .avatar { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; border: 2px solid #ddd; background: #eee; flex-shrink: 0; }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .para p { margin: 0; line-height: 1.5; }
+    .para p:first-child { font-weight: 700; font-size: 15px; }
+    .para p:last-child { font-size: 14px; color: #777; }
+    .quote { font-size: 16px; line-height: 1.75; color: #333; display: block; margin-top: 4px; }
+    .quote .opening { font-size: 26px; line-height: 0.5; color: #0d56b8; vertical-align: top; margin-right: 3px; font-weight: 900; }
+    .meta { display: flex; align-items: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee; }
+    .rating { display: flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 700; margin-left: auto; }
+
+    /* ── TRUST LOGOS (Image 2 style) ── */
+    .trust-logos {
+      display: flex; align-items: center; justify-content: center;
+      gap: 48px; flex-wrap: wrap;
+      padding: 36px 24px;
+      background: #fff;
+      border-top: 1px solid #e5e7eb;
+    }
+    .trust-logos img {
+      height: 140px; width: auto;
+      filter: grayscale(10%); opacity: 0.85;
+      transition: opacity 0.2s, filter 0.2s;
+      object-fit: contain;
+    }
+    .trust-logos img:hover { opacity: 1; filter: grayscale(0%); }
+
+    /* ── FOOTER ── */
+    footer { background: #111; padding: 20px 24px; text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; }
+    .footer-links a { color: #888; font-size: 13px; text-decoration: none; }
+    .footer-links a:hover { color: #bbb; }
+    footer > p { color: #555; font-size: 11.5px; line-height: 1.8; max-width: 700px; margin: 0 auto; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 23px; }
+      .hero { padding: 32px 16px 28px; }
+      .quiz-inner { padding: 22px 16px 18px; }
+      .question p { font-size: 18px; }
+      .call-button { font-size: 19px; }
+      .info-section { margin: 0 12px 20px; padding: 20px 16px; }
+      .trust-logos { gap: 24px; padding: 24px 16px; }
+      .trust-logos img { height: 48px; }
+      .header { flex-wrap: wrap; gap: 8px; padding: 8px 14px; }
+      footer { padding: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="header-alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      <strong>Low Stock Alert:</strong>
+      <span>Claim While Supplies Last</span>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="container">
+        <div class="hero-eyebrow">2026 Medicare Update</div>
+        <h1>New Medicare Benefit Gives Seniors a Subsidized <em>Continuous Glucose Monitor.</em> Claim Yours Below!</h1>
+        <p class="hero-sub">Takes less than 60 seconds — find out if you qualify today.</p>
+      </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="container">
+      <div class="quiz-wrapper">
+        <div class="quiz-label">Take this short quiz to see if you qualify</div>
+        <div class="quiz-inner">
+          <div id="question2" class="question active fade-in">
+            <p>Do you take insulin at least once per day?</p>
+            <button class="answer-button">Yes</button>
+            <a href="https://healthsubsidies.net/tsh1/non-qualified.html" style="text-decoration:none;">
+              <button class="answer-button no-btn">No</button>
+            </a>
+          </div>
+
+          <div id="question3" class="question">
+            <p>What year were you born?</p>
+            <button class="answer-button">Before 1961</button>
+            <button class="answer-button no-btn">After 1961</button>
+          </div>
+
+          <div id="section1" class="fade-section"><h2>Reviewing Your Answers...</h2></div>
+          <div id="section2" class="fade-section"><h2>Matching You with the Best Options...</h2></div>
+          <div id="finalSection" class="fade-section"></div>
+        </div>
+      </div>
+
+      <!-- PROGRAM BANNER -->
+      <div class="main-image" style="max-width:660px; margin:0 auto;">
+        <img src="Program-Banner5.jpg" alt="Medicare CGM Program" loading="lazy" style="max-width:100%; border-radius:8px;">
+      </div>
+
+      <!-- INFO SECTION -->
+      <section class="info-section">
+        <p>
+          Getting a CGM is expensive, but <span>Medicare covers the cost</span> for seniors 65+ using insulin.
+          Replace daily finger sticks with <span class="dark">pain-free, real-time glucose numbers</span> ↓
+        </p>
+
+        <!-- AS SEEN ON TV heading -->
+        <p class="astv-heading">AS SEEN ON TV!</p>
+
+        <!-- as-seen-tv.jpg — full width so logos are large like Image 1 -->
+        <img src="as-seen-tv.jpg" alt="As Seen on TV — CBS, ABC, Fox News, NYT, NBC, Washington Post, CNN and more" class="media-logos-img" loading="lazy">
+
+        <!-- TESTIMONIAL — wider card -->
+        <article class="testimonial" role="article">
+          <p class="testimonial-label">Recent Testimonial</p>
+          <div class="bubble">
+            <div class="flexy">
+              <div class="avatar"><img alt="Henry T." src="testy2.jpg" loading="lazy"></div>
+              <div class="para">
+                <p>Henry T.</p>
+                <p>Age: 68</p>
+              </div>
+            </div>
+            <p class="quote">
+              <span class="opening">"</span>
+              Got my CGM in just 5 days — the process was fast, the support team was kind, and setup was super easy. I'm so relieved to have this monitoring now.
+              <span class="opening">"</span>
+            </p>
+            <div class="meta">
+              <div class="rating">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 .587l3.668 7.431L23.4 9.57l-5.7 5.556L18.836 24 12 19.897 5.164 24l1.136-8.874L.6 9.57l7.732-1.552L12 .587z" fill="#F59E0B"/>
+                </svg>
+                <span>5.0</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- LOGOS -->
+    <div class="trust-logos">
+      <img src="logo1.png" alt="" style="width: 140px;" loading="lazy">
+      <img src="logo2.jpg" alt="" style="width: 140px;" loading="lazy">
+      <img src="logo3.jpg" alt="" style="width: 140px;" loading="lazy">
+      <img src="logo4.jpg" alt="" style="width: 140px;" loading="lazy">
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions / Partners</a>
+    </div>
+    <p>
+      Disclaimer: HealthSubsidies.net is not affiliated with the United States government, Social Security Administration,
+      Facebook, or any other entity. We may earn revenue from our advertisers for clicks, leads, calls and work
+      delivered for the services advertised. This compensation may impact how, where and which services appear.
+      HealthSubsidies.net does not include all providers or all available services. CGM Benefit is not a medical
+      organization nor do we provide medical services.
+    </p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let currentQuestionIndex = 2;
+      let answers = { question1: null, question2: null, question3: null };
+
+      function nextQuestion(nextIndex, answer) {
+        const current = document.querySelector(`#question${currentQuestionIndex}`);
+        const next = document.querySelector(`#question${nextIndex}`);
+        answers[`question${currentQuestionIndex}`] = answer;
+        if (current) {
+          current.classList.remove('fade-in');
+          setTimeout(() => {
+            current.classList.remove('active'); current.style.display = "none";
+            if (next) {
+              next.classList.add('active'); next.style.display = "block";
+              setTimeout(() => { next.classList.add('fade-in'); currentQuestionIndex = nextIndex; }, 10);
+            }
+            if (nextIndex === 4) checkQualification();
+          }, 600);
+        }
+      }
+
+      function checkQualification() {
+        const qualifies = answers.question2 === 'yes' && answers.question3 === 'before1961';
+        if (qualifies) showSections();
+        else window.location.href = "https://healthsubsidies.net/tsh1/non-qualified.html";
+      }
+
+      function showSections() {
+        const sections = ["section1", "section2"];
+        let idx = 0;
+        function showNext() {
+          if (idx < sections.length) {
+            const sec = document.querySelector(`#${sections[idx]}`);
+            if (sec) {
+              sec.classList.add('active'); sec.style.display = "block";
+              setTimeout(() => sec.classList.add('fade-in'), 10);
+              setTimeout(() => {
+                sec.classList.remove('fade-in');
+                setTimeout(() => { sec.classList.remove('active'); sec.style.display = "none"; idx++; showNext(); }, 600);
+              }, 800);
+            }
+          } else showApproval();
+        }
+        showNext();
+      }
+
+      function showApproval() {
+        const fs = document.querySelector("#finalSection");
+        if (fs) {
+          fs.innerHTML = `
+            <div class="finalsection">
+              <div class="qualify-strip">✓ Qualification Confirmed — You're Eligible</div>
+              <h3>Congratulations! You Qualify for a CGM Through Medicare Benefits.</h3>
+              <h1>Call Now to Claim Your CGM</h1>
+              <a href="tel:18445261473" class="call-button" id="callNowBtn">
+                <i class="fas fa-phone"></i> 1-844-526-1473
+              </a>
+              <p class="expire-label">Pre-Order Hold Expires in: <span>00:00</span></p>
+              <div class="stock-bar"><i class="fas fa-exclamation-triangle"></i> LOW STOCK ALERT — Limited Units Available</div>
+            </div>`;
+          fs.classList.add('active'); fs.style.display = "block";
+          setTimeout(() => {
+            fs.classList.add('fade-in');
+            const display = fs.querySelector(".expire-label span");
+            let remaining = 120;
+            const iv = setInterval(() => {
+              remaining--;
+              const m = String(Math.floor(remaining / 60)).padStart(2,'0');
+              const s = String(remaining % 60).padStart(2,'0');
+              if (display) display.textContent = `${m}:${s}`;
+              if (remaining <= 0) clearInterval(iv);
+            }, 1000);
+            const btn = document.getElementById("callNowBtn");
+            if (btn) btn.addEventListener("click", () => { if (typeof fbq === "function") fbq("track", "Lead"); });
+          }, 10);
+        }
+      }
+
+      document.querySelectorAll("#question2 .answer-button").forEach((btn, i) => {
+        btn.addEventListener("click", () => nextQuestion(3, i === 0 ? 'yes' : 'no'));
+      });
+      document.querySelectorAll("#question3 .answer-button").forEach((btn, i) => {
+        btn.addEventListener("click", () => nextQuestion(4, i === 0 ? 'before1961' : '1961-2000'));
+      });
+    });
+  </script>
+
+  <script src="//b-js.ringba.com/CA16517cc4a6b943c8ae5928445d3c7776" async></script>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1358238982322152');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1358238982322152&ev=PageView&noscript=1"></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "u986jp4hzb");
+  </script>
+
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1358238982322152'); fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1358238982322152&ev=PageView&noscript=1"></noscript>
+
+  <script>
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","u986jp4hzb");
+  </script>
+
+</body>
+</html>
