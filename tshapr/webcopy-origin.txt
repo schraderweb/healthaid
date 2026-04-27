@@ -1,0 +1,124 @@
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\ajax\libs\font-awesome\6.0.0-beta3\css\all.min.css
+Content Type: text/css
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-brands-400.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\ajax\libs\font-awesome\6.0.0-beta3\webfonts\fa-brands-400.ttf
+Content Type: application/octet-stream
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-brands-400.woff2
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\ajax\libs\font-awesome\6.0.0-beta3\webfonts\fa-brands-400.woff2
+Content Type: application/octet-stream
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-regular-400.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\ajax\libs\font-awesome\6.0.0-beta3\webfonts\fa-regular-400.ttf
+Content Type: application/octet-stream
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-regular-400.woff2
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\ajax\libs\font-awesome\6.0.0-beta3\webfonts\fa-regular-400.woff2
+Content Type: application/octet-stream
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-solid-900.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\ajax\libs\font-awesome\6.0.0-beta3\webfonts\fa-solid-900.ttf
+Content Type: application/octet-stream
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-solid-900.woff2
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\ajax\libs\font-awesome\6.0.0-beta3\webfonts\fa-solid-900.woff2
+Content Type: application/octet-stream
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-v4compatibility.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\ajax\libs\font-awesome\6.0.0-beta3\webfonts\fa-v4compatibility.ttf
+Content Type: application/octet-stream
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-v4compatibility.woff2
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\ajax\libs\font-awesome\6.0.0-beta3\webfonts\fa-v4compatibility.woff2
+Content Type: application/octet-stream
+
+Uri: https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\css2
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLBT5V1s.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\s\poppins\v24\pxiByp8kv8JHgFVrLBT5V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7V1s.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\s\poppins\v24\pxiByp8kv8JHgFVrLCz7V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDD4V1s.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\s\poppins\v24\pxiByp8kv8JHgFVrLDD4V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8V1s.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\s\poppins\v24\pxiByp8kv8JHgFVrLDz8V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6V1s.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\s\poppins\v24\pxiByp8kv8JHgFVrLEj6V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLFj_V1s.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\s\poppins\v24\pxiByp8kv8JHgFVrLFj_V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9V1s.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\s\poppins\v24\pxiByp8kv8JHgFVrLGT9V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrFJA.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\s\poppins\v24\pxiEyp8kv8JHgFVrFJA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v24/pxiGyp8kv8JHgFVrLPTedw.ttf
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\s\poppins\v24\pxiGyp8kv8JHgFVrLPTedw.ttf
+Content Type: font/ttf
+
+Uri: https://healthsubsidies.net/get_your_cgm/
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\get_your_cgm\get_your_cgm
+Content Type: text/html
+
+Uri: https://healthsubsidies.net/get_your_cgm/as-seen-tv.jpg
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\get_your_cgm\as-seen-tv.jpg
+Content Type: image/jpeg
+
+Uri: https://healthsubsidies.net/get_your_cgm/callmain.png
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\get_your_cgm\callmain.png
+Content Type: image/png
+
+Uri: https://healthsubsidies.net/get_your_cgm/logo1.png
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\get_your_cgm\logo1.png
+Content Type: image/png
+
+Uri: https://healthsubsidies.net/get_your_cgm/logo2.jpg
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\get_your_cgm\logo2.jpg
+Content Type: image/jpeg
+
+Uri: https://healthsubsidies.net/get_your_cgm/logo3.jpg
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\get_your_cgm\logo3.jpg
+Content Type: image/jpeg
+
+Uri: https://healthsubsidies.net/get_your_cgm/logo4.jpg
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\get_your_cgm\logo4.jpg
+Content Type: image/jpeg
+
+Uri: https://healthsubsidies.net/get_your_cgm/Program-Banner5.jpg
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\get_your_cgm\Program-Banner5.jpg
+Content Type: image/jpeg
+
+Uri: https://healthsubsidies.net/get_your_cgm/script.js
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\get_your_cgm\script.js
+Content Type: application/javascript
+
+Uri: https://healthsubsidies.net/get_your_cgm/style.css
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\get_your_cgm\style.css
+Content Type: text/css
+
+Uri: https://healthsubsidies.net/get_your_cgm/testy2.jpg
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\get_your_cgm\testy2.jpg
+Content Type: image/jpeg
+
+Uri: https://www.facebook.com/tr?id=1358238982322152&ev=PageView&noscript=1
+File Name: C:\Users\IT Admin\Desktop\healthsubsidies.net\tr
+Content Type: text/plain
+
