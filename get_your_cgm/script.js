@@ -99,7 +99,7 @@ medicare Benefits.
                             
                             <h1>CALL NOW TO CLAIM YOUR CGM </h1>
                             <a href="tel:18777340473" class="call-button" id="callNowBtn">
-                                <i class="fas fa-phone"></i> 1-844-526-1473   
+                                <i class="fas fa-phone"></i> 1-877-734-0473
                             </a>
                             <h4>Pre-Order Hold Expires in: <span style="color: #ff0000;">00:00</span></h4>
                             <p><i class="fas fa-exclamation-triangle"></i> LOW STOCK ALERT</p>
